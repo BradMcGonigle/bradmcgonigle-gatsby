@@ -1,6 +1,30 @@
-import React from 'react';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
+import React from 'react'
+import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
+
+import Header from '../components/Header'
+
+
+const Hero = () => (
+  <div>
+    <div className="hero is-info is-fullheight">
+      <div className="hero-top">
+        <Header />
+      </div>
+      <div className="hero-body">
+        <div className="container">
+          <div className="columns">
+            <div className="column is-5 content">
+              <h1 className="title">Hi, I'm Brad.</h1>
+              <h2 className="subtitle">I build things on the internet.</h2>
+              <p>I'm a frontend developer and product designer with a broad range of skills and expertise in user experience design.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 export default class IndexPage extends React.Component {
   componentDidMount() {
@@ -16,35 +40,16 @@ export default class IndexPage extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     const { data } = this.props;
     const { edges: posts } = data.allMarkdownRemark;
     return (
-      <section className="section">
+      <div>
         <Helmet>
           <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
         </Helmet>
-        <div className="container">
-          {posts.filter(post => post.node.frontmatter.templateKey === 'blog-post').map(({ node: post }) => {
-            return (
-              <div className="content" style={{ border: '1px solid #eaecee', padding: '2em 4em' }} key={post.id}>
-                <p>
-                  <Link to={post.frontmatter.path}>{post.frontmatter.title}</Link>
-                  <span> &bull; </span>
-                  <small>{post.frontmatter.date}</small>
-                </p>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button is-info is-small" to={post.frontmatter.path}>
-                    Keep Reading
-                  </Link>
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+        <Hero />
+      </div>
     );
   }
 }
@@ -59,7 +64,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             templateKey
-            date(formatString: "MMMM DD, YYYY")
+            date
             path
           }
         }

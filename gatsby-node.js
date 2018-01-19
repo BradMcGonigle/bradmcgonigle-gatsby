@@ -1,11 +1,17 @@
-const path = require('path');
+const _ = require(`lodash`);
+const Promise = require(`bluebird`)
+const path = require(`path`)
+const slash = require(`slash`)
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
   return graphql(`
     {
-      allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }, limit: 1000) {
+      allMarkdownRemark(
+        sort: { order: DESC, fields: [frontmatter___date] },
+        limit: 1000
+      ) {
         edges {
           node {
             excerpt(pruneLength: 400)
@@ -25,6 +31,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     if (result.errors) {
       return Promise.reject(result.errors);
     }
+
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.frontmatter.path,

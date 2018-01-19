@@ -1,38 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
-import Helmet from 'react-helmet';
-import github from '../img/github-icon.svg';
 import 'bulma';
+import 'devicon';
+import Helmet from 'react-helmet';
+import Link from 'gatsby-link';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-const Navbar = () => (
-  <nav className="navbar is-light">
-    <div className="container">
-      <div className="navbar-brand">
-        <Link to="/" className="navbar-item">
-          Gatsby powered by Netlify CMS
-        </Link>
-      </div>
-      <div className="navbar-start">
-        <Link className="navbar-item" to="/about">
-          About
-        </Link>
-      </div>
-      <div className="navbar-end">
-        <a className="navbar-item" href="https://github.com/AustinGreen/gatsby-netlify-cms-boilerplate" target="_blank">
-          <span className="icon">
-            <img src={github} alt="Github" />
-          </span>
-        </a>
-      </div>
-    </div>
-  </nav>
-);
+import '../../static/fontawesome/css/font-awesome.css'
+
+require('prismjs/themes/prism-okaidia.css');
+
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Home | Gatsby + Netlify CMS" />
-    <Navbar />
+    <Helmet title="Brad McGonigle" />
     <div>{children()}</div>
   </div>
 );

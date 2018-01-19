@@ -8,7 +8,7 @@ export default function Template({ data }) {
   const { markdownRemark: post } = data;
   return (
     <div>
-      <Helmet title={`Blog | ${post.frontmatter.title}`} />
+      <Helmet title={`Links | ${post.frontmatter.title}`} />
       <Header />
       <section className="section">
         <div className="container content">
@@ -22,13 +22,14 @@ export default function Template({ data }) {
 }
 
 export const pageQuery = graphql`
-  query BlogPostByPath($path: String!) {
+  query LinkPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
         path
         date
         title
+        linkUrl
       }
     }
   }
