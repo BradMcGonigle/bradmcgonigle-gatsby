@@ -23,6 +23,9 @@ class Header extends React.Component {
 
           <div id="navbarExampleTransparentExample" className="navbar-menu">
             <div className="navbar-end">
+              <Link className="navbar-item" to="about">
+                About
+              </Link>
               <Link className="navbar-item" to="work">
                 Work
               </Link>

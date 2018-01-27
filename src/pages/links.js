@@ -2,46 +2,61 @@ import React from 'react';
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
 
-import AboutMeCard from '../components/AboutMeCard';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faExternalLink from '@fortawesome/fontawesome-pro-light/faExternalLink';
+import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
-import PropTypes from "prop-types";
-import styled from "react-emotion";
 
-import '../../static/fontawesome/css/font-awesome.css'
+const SectionHeader = styled('div')`
+  h1 {
+    font-size: 2rem;
 
+    small {
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+  }
+`
 
 const LinkItem = styled('div')`
-  align-items: stretch;
-  display: flex;
-
   .card {
-    align-content: strech;
-    align-items: strech;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     height: 100%;
 
     .card-image {
       background-color: #eee;
-      min-height: 200px;
       text-align: center;
-      width: 100%;
 
-      .icon {
-        color: #ddd;
-        display: inline-block;
-        font-size: 3em;
-        line-height: 200px;
-        vertical-align: middle;
+      span.icon {
+        bottom: 0;
+        color: #e7e7e7;
+        font-size: 3rem;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: 250ms color ease-in-out;
+        width: 100%;
       }
     }
 
     .card-content {
-      align-items: bottom;
+      time {
+        font-size: 0.875rem;
+      }
+    }
+
+    &:hover {
+      .card-image {
+        span.icon {
+          color: #e1e1e1;
+        }
+      }
     }
   }
 `
@@ -54,44 +69,43 @@ export default class LinkPage extends React.Component {
       <div>
         <Header />
         <section className="section">
-          <div className="container">
+          <div className="container is-fluid">
             <div className="columns">
-              <div className="column">
-                <h1 className="title">Links</h1>
-                <h2 className="subtitle">Things I find interesting.</h2>
+              <SectionHeader className="column">
+                <h1 className="title">Links <small>&mdash; Things I find interesting.</small></h1>
                 <div className="columns is-multiline">
-                {posts.filter(post => post.node.frontmatter.templateKey === 'link-post').map(({ node: post }) => {
-                  return (
-                    <div className="column is-3">
-                      <LinkItem key={post.id}>
+                {
+                  posts.filter(post => post.node.frontmatter.templateKey === 'link-post').map(({ node: post }) => {
+                    return (
+                      <LinkItem className="column is-6-tablet is-4-desktop is-3-widescreen" key={post.id}>
                         <a href={post.frontmatter.linkUrl}>
                           <div className="card">
                             <div className="card-image">
-                              <figure className="image">
-                                { post.frontmatter.linkImage ?
-                                  <img
-                                    src={post.frontmatter.linkImage.childImageSharp.resize.src}
-                                  /> :
-                                  <span className="icon">
-                                    <i className="fa fa-external-link" />
+                              {
+                                post.frontmatter.linkImage ?
+                                <Img className="image" sizes={post.frontmatter.linkImage.childImageSharp.sizes} />
+                                 :
+                                <figure className="is-hidden-mobile image is-3by2">
+                                  <span className="icon is-large">
+                                    <FontAwesomeIcon icon={faExternalLink} />
                                   </span>
-                                }
-                              </figure>
+                                </figure>
+                              }
                             </div>
                             <div className="card-content">
                               <div className="content">
-                                <h4>{post.frontmatter.title}</h4>
                                 <time dateTime={post.frontmatter.date}>{post.frontmatter.date}</time>
+                                <h4>{post.frontmatter.title}</h4>
                               </div>
                             </div>
                           </div>
                         </a>
                       </LinkItem>
-                    </div>
-                  );
-                })}
+                    );
+                  })
+                }
                 </div>
-              </div>
+              </SectionHeader>
             </div>
           </div>
         </section>
@@ -106,7 +120,6 @@ export const pageQuery = graphql`
     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
-          excerpt(pruneLength: 2000)
           id
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
@@ -116,11 +129,13 @@ export const pageQuery = graphql`
             linkUrl
             linkImage {
               childImageSharp {
-                sizes(maxWidth: 520) {
-                  ...GatsbyImageSharpSizes
-                }
-                resize(width: 300, height: 200, quality: 100, cropFocus: CENTER) {
-                  src
+                sizes(
+                  maxWidth: 1000,
+                  maxHeight: 667,
+                  cropFocus: ATTENTION,
+                  traceSVG: { color: "#A7DEF6" }
+                ) {
+                  ...GatsbyImageSharpSizes_withWebp_tracedSVG
                 }
               }
             }

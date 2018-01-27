@@ -18,8 +18,7 @@ export default class BlogPage extends React.Component {
             <div className="columns">
               <div className="column is-two-thirds">
                 <div className="content">
-                  <h1 className="title">Writings</h1>
-                  <h2 className="subtitle">Thoughts on development and design.</h2>
+                  <h1 className="title">Writings <small>&mdash; Thoughts on things</small></h1>
                   {posts.filter(post => post.node.frontmatter.templateKey === 'blog-post').map(({ node: post }) => {
                     return (
                       <div className="content" key={post.id}>

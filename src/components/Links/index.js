@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import styled from "react-emotion";
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'react-emotion';
 
 import '../../../static/fontawesome/css/font-awesome.css'
 

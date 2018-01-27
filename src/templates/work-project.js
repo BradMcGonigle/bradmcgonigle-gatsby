@@ -63,9 +63,6 @@ export default function Template({ data }) {
             <div className="column is-7">
               <p className="content">{post.frontmatter.description}</p>
             </div>
-            <div className="column is-4">
-              <Img sizes={post.frontmatter.projectThumbnail.childImageSharp.sizes} />
-            </div>
           </div>
         </div>
       </section>

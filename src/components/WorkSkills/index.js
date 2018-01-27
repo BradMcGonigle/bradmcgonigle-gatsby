@@ -2,6 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "react-emotion"
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+
 
 const SkillsListWrapper = styled('div')`
 

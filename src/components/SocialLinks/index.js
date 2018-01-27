@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 
-import '../../../static/fontawesome/css/font-awesome.css'
-
 
 const Links = styled('span')`
   align-items: center;

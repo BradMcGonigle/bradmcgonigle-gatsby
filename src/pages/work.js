@@ -89,17 +89,19 @@ export default class WorkPage extends React.Component {
         <section className="section">
           <div className="container">
             <div className="columns">
-            {posts.filter(post => post.node.frontmatter.templateKey === 'work-project').map(({ node: post }) => {
-              return (
-                <Link className="column is-4 content" key={post.id} to={post.frontmatter.path}>
-                  <Img sizes={post.frontmatter.projectThumbnail.childImageSharp.sizes} />
-                  <p>
-                    {post.frontmatter.title}
-                  </p>
-                  <p>{post.excerpt}</p>
-                </Link>
-              );
-            })}
+              {
+                  posts.filter(post => post.node.frontmatter.templateKey === 'work-project').map(({ node: post }) => {
+                  return (
+                    <Link className="column is-4 content" key={post.id} to={post.frontmatter.path}>
+                      <Img sizes={post.frontmatter.projectThumbnail.childImageSharp.sizes} />
+                      <p>
+                        {post.frontmatter.title}
+                      </p>
+                      <p>{post.excerpt}</p>
+                    </Link>
+                  );
+                })
+              }
             </div>
           </div>
         </section>
