@@ -29,10 +29,10 @@ const Hero = () => (
 export default class IndexPage extends React.Component {
   componentDidMount() {
     if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
+      window.netlifyIdentity.on("init", user => {
         if (!user) {
-          window.netlifyIdentity.on('login', () => {
-            document.location.href = '/admin/';
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
           });
         }
       });
@@ -46,7 +46,7 @@ export default class IndexPage extends React.Component {
     return (
       <div>
         <Helmet>
-          <script async src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
+          <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
         </Helmet>
         <Hero />
       </div>
