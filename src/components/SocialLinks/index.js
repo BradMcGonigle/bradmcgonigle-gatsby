@@ -2,6 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "react-emotion";
 
+import fontawesome from '@fortawesome/fontawesome';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faFacebook, faGithub, faInstagram, faTwitter } from '@fortawesome/fontawesome-pro-light';
+
 
 const Links = styled('span')`
   align-items: center;
@@ -21,16 +25,16 @@ class SocialLinks extends React.Component {
     return (
       <Links className="social">
         <a href="https://github.com/bradmcgonigle">
-          <span className="icon"><i className="fa fa-github fa-inverse" /></span>
+          <span className="icon"><FontAwesomeIcon icon={faGithub} inverse /></span>
         </a>
         <a href="https://twitter.com/bradmcgonigle">
-          <span className="icon"><i className="fa fa-twitter fa-inverse" /></span>
+          <span className="icon"><FontAwesomeIcon icon={faTwitter} inverse /></span>
         </a>
         <a href="https://facebook.com/bradmcgonigle">
-          <span className="icon"><i className="fa fa-facebook fa-inverse" /></span>
+          <span className="icon"><FontAwesomeIcon icon={faFacebook} inverse /></span>
         </a>
         <a href="https://instagram.com/bradmcgonigle">
-          <span className="icon"><i className="fa fa-instagram fa-inverse" /></span>
+          <span className="icon"><FontAwesomeIcon icon={faInstagram} inverse /></span>
         </a>
       </Links>
     );
